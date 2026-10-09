@@ -1,0 +1,66 @@
+name: Publish APK release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "release/StudySpace.apk"
+      - "VERSION"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version and checksum
+        id: info
+        run: |
+          VERSION="$(tr -d ' \r\n' < VERSION)"
+          SHA="$(sha256sum release/StudySpace.apk | cut -d' ' -f1)"
+          SIZE="$(du -h release/StudySpace.apk | cut -f1)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+
+      - name: Write release notes
+        run: |
+          cat > notes.md <<NOTES
+          ## Study Space v${{ steps.info.outputs.version }}
+
+          Official Android app for Study Space.
+          Website: https://Study.mrharshit.in
+
+          ### Install
+          1. Download **StudySpace.apk** below (under Assets).
+          2. Open the file and allow *Install unknown apps* if Android asks.
+          3. Tap **Install**, then **Open**.
+
+          ### Update
+          Download the new APK and install it over the old one. Your data stays in your account.
+
+          ### Verify (optional)
+          File size: ${{ steps.info.outputs.size }}
+          SHA-256: \`${{ steps.info.outputs.sha }}\`
+          NOTES
+          sed -i 's/^          //' notes.md
+
+      - name: Create or update the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ steps.info.outputs.version }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" release/StudySpace.apk --clobber
+            gh release edit "$TAG" --notes-file notes.md --latest
+          else
+            gh release create "$TAG" release/StudySpace.apk \
+              --title "Study Space $TAG" \
+              --notes-file notes.md \
+              --target "${{ github.sha }}" \
+              --latest
+          fi

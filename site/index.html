@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study Space – Library & Study Center Management App</title>
+<meta name="description" content="Study Space helps self-study centers and libraries manage students, seats, shifts and notices. Download the official Android app and learn how to install and update it.">
+<meta name="keywords" content="Study Space, library management, self study center software, seat management, study room app, Study.mrharshit.in">
+<link rel="canonical" href="https://Study.mrharshit.in">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Study Space – Library & Study Center Management">
+<meta property="og:description" content="Manage students, seats, shifts and notices. Official Android app download and install guide.">
+<meta property="og:url" content="https://Study.mrharshit.in">
+<meta name="theme-color" content="#12302b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Study Space","applicationCategory":"BusinessApplication","operatingSystem":"Android","url":"https://Study.mrharshit.in","description":"Library and self-study center management: students, seats, shifts and notifications."}
+</script>
+<style>
+:root{
+  --bg:#eaf0ec; --ink:#12302b; --muted:#4d6660; --line:#c9d6cf;
+  --panel:#f6f9f7; --lamp:#f2a83b; --lamp-ink:#3a2602;
+  --dark:#12302b; --dark-ink:#e9f2ee;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1f1c; --ink:#e4efe9; --muted:#96afa7; --line:#264039;
+    --panel:#142a26; --dark:#081512; --dark-ink:#e4efe9;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1f1c; --ink:#e4efe9; --muted:#96afa7; --line:#264039;
+  --panel:#142a26; --dark:#081512; --dark-ink:#e4efe9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:14px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none}
+nav .links{display:flex;gap:20px;flex-wrap:wrap}
+nav .links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:15px}
+nav .links a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:44px 0 64px}
+h1{font-size:clamp(38px,6.4vw,68px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:0 0 18px}
+.lead{font-size:19px;color:var(--muted);max-width:52ch;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:16px;border:2px solid var(--ink);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--lamp);border-color:var(--lamp);color:var(--lamp-ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.note{font-size:14px;color:var(--muted);margin-top:14px}
+
+/* the one memorable element: a seat map */
+.seatmap{background:var(--dark);border-radius:22px;padding:26px;color:var(--dark-ink)}
+.seatmap h2{font-size:15px;font-weight:600;margin:0 0 16px;color:var(--dark-ink);opacity:.8}
+.seats{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.seat{aspect-ratio:1;border-radius:8px 8px 4px 4px;background:rgba(233,242,238,.14)}
+.seat.t{background:rgba(233,242,238,.5)}
+.seat.f{background:var(--lamp);animation:glow 3.2s ease-in-out 1}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(242,168,59,.9)}60%{box-shadow:0 0 0 14px rgba(242,168,59,0)}100%{box-shadow:none}}
+.legend{display:flex;gap:16px;margin-top:18px;font-size:13px;opacity:.85;flex-wrap:wrap}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2.t{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 30px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.feat div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.feat h3{margin:0 0 6px;font-size:18px}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px;max-width:720px}
+ol.steps li{counter-increment:s;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 62px}
+ol.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:15px}
+ol.steps b{display:block}
+ol.steps span{color:var(--muted);font-size:15px}
+
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;max-width:760px}
+summary{cursor:pointer;font-weight:700}
+details p{margin:10px 0 0;color:var(--muted)}
+code{background:var(--line);padding:2px 7px;border-radius:6px;font-size:14px;word-break:break-all}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:14px}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#top">Study Space</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#install">Install</a>
+      <a href="#update">Update</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://Study.mrharshit.in">Website</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <h1>Run your study space without the paperwork.</h1>
+      <p class="lead">Study Space helps libraries and self-study centers manage students, seats, shifts and notices in one place, on the web and on your phone.</p>
+      <div class="btns">
+        <a class="btn primary" id="dl" href="releases/latest/download/StudySpace.apk">Download Android app</a>
+        <a class="btn ghost" href="https://Study.mrharshit.in">Open the website</a>
+      </div>
+      <p class="note">Official download. Free to get from this page. Android only for now.</p>
+    </div>
+    <div class="seatmap" aria-label="Illustration of a seat map">
+      <h2>Reading room, today</h2>
+      <div class="seats" id="seats" aria-hidden="true"></div>
+      <div class="legend">
+        <span><i style="background:rgba(233,242,238,.5)"></i>Taken</span>
+        <span><i style="background:var(--lamp)"></i>Free</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2 class="t">What Study Space does</h2>
+    <p class="sub">One organised system for the daily work of a study center. Visit the website to see the full product.</p>
+    <div class="feat">
+      <div><h3>Students</h3><p>Keep every student's details and records together and easy to find.</p></div>
+      <div><h3>Seats</h3><p>Know which seats are taken and which are free at any moment.</p></div>
+      <div><h3>Shifts</h3><p>Organise morning, evening and custom timings without confusion.</p></div>
+      <div><h3>Notifications</h3><p>Send notices and reminders so students never miss an update.</p></div>
+      <div><h3>Dashboard</h3><p>See how your study space is doing at a glance.</p></div>
+      <div><h3>Web and mobile</h3><p>Use it in your browser or install the Android app.</p></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2 class="t">Install the Android app</h2>
+    <p class="sub">It takes about a minute. You only need to allow installs from your browser once.</p>
+    <ol class="steps">
+      <li><b>Download the APK</b><span>Tap “Download Android app” above. The file is called StudySpace.apk.</span></li>
+      <li><b>Open the file</b><span>Open it from the notification bar or your Downloads folder.</span></li>
+      <li><b>Allow installation if asked</b><span>Tap Settings, then turn on “Allow from this source” for your browser or file manager.</span></li>
+      <li><b>Tap Install</b><span>If Play Protect shows a warning, tap More details, then Install anyway. This appears for any app installed outside the Play Store.</span></li>
+      <li><b>Open and sign in</b><span>Tap Open, then sign in or create your account.</span></li>
+    </ol>
+  </section>
+
+  <section id="update">
+    <h2 class="t">Update the app</h2>
+    <p class="sub">Download the newest APK from this page and install it over the old one. Your data stays safe because it is stored in your account. You don't need to uninstall first.</p>
+    <div class="btns"><a class="btn ghost" id="rel" href="releases/latest">See latest release</a></div>
+  </section>
+
+  <section id="faq">
+    <h2 class="t">Questions</h2>
+    <details><summary>Is this the official page?</summary><p>Yes. Only download Study Space from this page or from Study.mrharshit.in. Don't install copies from other sources.</p></details>
+    <details><summary>The app won't install. What should I check?</summary><p>Make sure installs from your browser are allowed, you have free storage, and the download finished fully. Then try again.</p></details>
+    <details><summary>Can I verify my download?</summary><p>Yes. Each release lists a SHA-256 checksum. Compare it with your file using a hash app, or <code>sha256sum StudySpace.apk</code> on a computer.</p></details>
+    <details><summary>Is the source code available?</summary><p>No. Study Space is a private, closed-source product.</p></details>
+    <details><summary>Where do I get help?</summary><p>Open an issue on this repository or contact us through the website.</p></details>
+  </section>
+
+  <footer>
+    &copy; Study Space. All rights reserved. This page contains downloads and guides only, with no source code.
+    &nbsp;|&nbsp; <a href="https://Study.mrharshit.in">Study.mrharshit.in</a>
+  </footer>
+</div>
+
+<script>
+// Seat illustration (decorative)
+(function(){
+  var pattern="ttfttttftttfttftttttfttfttttftttfft".split("");
+  var box=document.getElementById("seats");
+  pattern.slice(0,30).forEach(function(c){
+    var d=document.createElement("div");
+    d.className="seat "+(c==="f"?"f":"t");
+    box.appendChild(d);
+  });
+})();
+
+// Point download buttons at this repo's latest release when hosted on github.io
+(function(){
+  try{
+    var h=location.hostname;
+    if(h.slice(-10)==="github.io"){
+      var owner=h.split(".")[0];
+      var repo=location.pathname.split("/")[1]||(owner+".github.io");
+      var base="https://github.com/"+owner+"/"+repo+"/releases/latest";
+      document.getElementById("dl").href=base+"/download/StudySpace.apk";
+      document.getElementById("rel").href=base;
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
